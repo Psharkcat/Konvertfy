@@ -3,11 +3,18 @@ import os
 
 # Codec maps for video formats, audio formats, and image formats.
 VIDEO_CODEC_MAP = {
-    ".mp4": ("libx264", "aac"),
-    ".mkv": ("libx264", "aac"),
-    ".webm": ("libvpx-vp9", "libopus"),
-    ".avi": ("libxvid", "mp3"),
-    ".mov": ("libx264", "aac")
+    ".mp4": ("libx264", "aac"),          # software
+    ".mkv": ("libx264", "aac"),          # software
+    ".webm": ("libvpx-vp9", "libopus"),  # software
+    ".avi": ("libxvid", "mp3"),          # software
+    ".mov": ("libx264", "aac"),          # software
+
+    # hardware accelerated (NVIDIA, Intel, AMD)
+    ".mp4_hw": ("h264_nvenc", "aac"),    # NVIDIA
+    ".mp4_qsv": ("h264_qsv", "aac"),     # Intel QuickSync
+    ".mp4_vaapi": ("h264_vaapi", "aac"), # Intel/AMD VAAPI on Linux
+    ".mkv_hw": ("hevc_nvenc", "aac"),    # NVIDIA HEVC
+    ".webm_hw": ("vp8_vaapi", "libopus") # VAAPI VP8
 }
 AUDIO_CODEC_MAP = {
     ".mp3": "libmp3lame", 
